@@ -1,5 +1,7 @@
 # Splunk SIEM Nedir? Temeller ve Mimarisiyle Giriş (1. Bölüm)  
 
+---
+
 Siber güvenlik dünyasında tehditler giderek karmaşıklaşırken, kurumlar bu tehditleri gerçek zamanlı olarak tespit etmek ve yanıtlamak için güçlü araçlara ihtiyaç duyuyor. Bu araçlardan biri de SIEM sistemleridir. Bu yazı serisinin ilk bölümünde, SIEM dünyasının en çok tercih edilen çözümlerinden biri olan Splunk’a temel düzeyde bir giriş yapacağız. Splunk nedir, nasıl çalışır, mimarisi nasıldır, neden bu kadar popülerdir? Gelin birlikte inceleyelim.  
 
 ---
