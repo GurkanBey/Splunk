@@ -37,4 +37,4 @@ Gelen logları işler, olaylara ayırır, indeksler ve saklar. En kritik işlevl
 4. Cluster Master ve Deployment Server (Opsiyonel)
 	• Cluster Master: Indexer cluster'larının yönetiminden sorumludur (replikasyon, failover vb.).
 	• Deployment Server: Yüzlerce forwarder varsa, merkezi konfigürasyon sağlar.
-<img width="806" height="830" alt="image" src="https://github.com/user-attachments/assets/f3256ee7-b36a-4b0e-9959-68d34f5a4093" />
+
