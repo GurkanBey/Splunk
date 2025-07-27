@@ -19,22 +19,26 @@ Splunk’un SIEM altyapısı oldukça modüler ve ölçeklenebilirdir. Temel bil
 
 1. Forwarder (Veri Toplayıcı)
 Veriyi kaynak sistemden toplayıp Splunk ortamına gönderir. İki türü vardır:
+
 	• Universal Forwarder (UF): Hafiftir, sadece veri iletir.
 	• Heavy Forwarder (HF): Veriyi iletmeden önce ön işleme (parse, filter) yapabilir.
 
-2. Indexer (Veri Dizinleyici)
+3. Indexer (Veri Dizinleyici)
 Gelen logları işler, olaylara ayırır, indeksler ve saklar. En kritik işlevleri:
+
 	• Timestamp çıkarımı
 	• Field extraction (alan çıkarımı)
 	• Event breaking (olay ayırma)
 
-3. Search Head (Arama ve Görselleştirme Katmanı)
+5. Search Head (Arama ve Görselleştirme Katmanı)
+   
 	• Kullanıcının dashboard, alarm ve rapor oluşturduğu katmandır.
 	• Arama taleplerini indexer’lara dağıtır, sonuçları birleştirip gösterir.
 	• SPL (Splunk Process Language) sorgulamaları bu aşamada yapılır.
 	• SPL kullanımı ile toplanan loglar üzerinde en detaylı sonuçlara ulaşmak mümkündür.
 
-4. Cluster Master ve Deployment Server (Opsiyonel)
+7. Cluster Master ve Deployment Server (Opsiyonel)
+   
 	• Cluster Master: Indexer cluster'larının yönetiminden sorumludur (replikasyon, failover vb.).
 	• Deployment Server: Yüzlerce forwarder varsa, merkezi konfigürasyon sağlar.
 
