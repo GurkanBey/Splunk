@@ -33,12 +33,16 @@ Gelen logları işler, olaylara ayırır, indeksler ve saklar. En kritik işlevl
 5. Search Head (Arama ve Görselleştirme Katmanı)
    
 	• Kullanıcının dashboard, alarm ve rapor oluşturduğu katmandır.
+
 	• Arama taleplerini indexer’lara dağıtır, sonuçları birleştirip gösterir.
+
 	• SPL (Splunk Process Language) sorgulamaları bu aşamada yapılır.
+
 	• SPL kullanımı ile toplanan loglar üzerinde en detaylı sonuçlara ulaşmak mümkündür.
 
 7. Cluster Master ve Deployment Server (Opsiyonel)
    
 	• Cluster Master: Indexer cluster'larının yönetiminden sorumludur (replikasyon, failover vb.).
+
 	• Deployment Server: Yüzlerce forwarder varsa, merkezi konfigürasyon sağlar.
 
