@@ -38,3 +38,82 @@ Gelen logları işler, olaylara ayırır, indeksler ve saklar. En kritik işlevl
 	• Cluster Master: Indexer cluster'larının yönetiminden sorumludur (replikasyon, failover vb.).
 	• Deployment Server: Yüzlerce forwarder varsa, merkezi konfigürasyon sağlar.
 
+
+## ⚙️ Cluster Mimarisi: Dağıtık Yapı ve Yüksek Erişilebilirlik
+
+### 📌 Indexer Cluster:
+- Veriler birden fazla indexer’da replikasyon faktörüne göre çoğaltılır.
+- Bir indexer çökerse, diğerinde veri aynen mevcuttur.
+- Ölçeklenebilirlik ve veri bütünlüğü açısından kritiktir.
+- Ancak bu yapı yüksek bir maliyet oluşturmaktadır.
+
+### 📌 Search Head Cluster:
+- Kullanıcı sorguları birden fazla node’a dağıtılır.
+- Yük dengelenir, hizmet kesintisi önlenir.
+- Aralarında bir node “Captain” olarak yönetici rolü üstlenir.
+- Birden fazla sorgulama işlemi gerçekleştirilebilir.
+
+---
+
+## 💡 Peki Cluster Mimarisi Nedir?  
+
+### 🔸Cluster nedir?  
+- En basit haliyle cluster, birden fazla sunucunun (node) tek bir sistem gibi birlikte çalıştığı bir yapıdır.  
+
+### 🔸Amaçları  
+- Yük paylaşımı (load balancing): İş yükü birden fazla sunucuya dağıtılır.  
+- Yüksek erişilebilirlik (high availability): Bir sunucu çökse bile hizmet devam eder.  
+- Ölçeklenebilirlik (scalability): Yeni sunucular eklenerek kapasite artırılır.  
+- Hata toleransı (fault tolerance): Veriler veya işlemler yedeklenerek kayıp önlenir.  
+
+### 🔸Cluster’ın temel yapısı  
+- Bir cluster genelde aşağıdaki parçalardan oluşur:  
+
+#### 🔹 Node (Düğüm)  
+- Cluster içindeki tek bir sunucuya "node" denir.  
+- Örneğin: 5 sunucudan oluşan bir indexer cluster varsa, her biri bir "node"tur.  
+
+#### 🔹 Master/Coordinator  
+- Cluster’ın yöneticisidir.  
+- Görevleri:  
+  - Hangi node hangi işi yapacak, koordine etmek  
+  - Replikasyon kurallarını yönetmek  
+  - Sağlık durumlarını izlemek  
+
+#### 🔹 Replication (Kopyalama)  
+- Cluster’daki verilerin birden fazla node’da yedeği tutulur.  
+- Örneğin: Replikasyon faktörü (RF) 3 ise, her veri 3 farklı node’a kopyalanır.  
+
+---
+
+## 🔁 Splunk Cluster'da Veri Akışı Nasıl Gerçekleşir?  
+
+Splunk mimarisinde log verisinin cluster içinde nasıl işlendiğini basit bir örnek üzerinden inceleyelim:  
+
+- 🔸Forwarder log verisini gönderir.  
+  - Kaynak sistemdeki loglar, Universal veya Heavy Forwarder aracılığıyla Splunk ortamına iletilir.  
+
+- 🔸Veri bir Indexer’a ulaşır.  
+  - Bu ilk Indexer, logları işler, timestamp çıkarır, alanları ayırır ve dizinleme işlemini başlatır.  
+
+- 🔸Replikasyon başlar.  
+  - İlk Indexer, işlediği verinin bir kopyasını başka bir Indexer’a gönderir. Böylece veri iki farklı yerde saklanmış olur.  
+
+- 🔸Node'lardan biri arızalansa bile veri kaybolmaz.  
+  - Replikasyon sayesinde veri bütünlüğü korunur, sistem yüksek erişilebilirliğe sahip olur.  
+
+- 🔸Search Head, arama sorgularını Indexer node’lara gönderir.  
+  - Kullanıcı tarafından yapılan bir arama, Search Head tarafından cluster’daki tüm Indexer’lara dağıtılır. Her Indexer kendi verisini tarar, sonuçlar toplanır ve kullanıcıya sunulur.  
+
+---
+
+## 🧩 Splunk SIEM’in Artı ve Eksileri  
+
+| ✅ Avantajları                              | ❌ Zorluklar                           |
+|---------------------------------------------|-----------------------------------------|
+| • Büyük veri hacmini hızlı işler            | • Yüksek lisans ve donanım maliyeti     |
+| • SPL dili ile esnek arama ve korelasyon    | • Kurulum ve yapılandırma karmaşıktır   |
+| • Modüler, ölçeklenebilir mimari            | • Özelleştirme zaman alabilir           |
+| • Güçlü dashboard ve raporlama              |                                         |
+
+
