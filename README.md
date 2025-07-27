@@ -116,4 +116,20 @@ Splunk mimarisinde log verisinin cluster içinde nasıl işlendiğini basit bir 
 | • Modüler, ölçeklenebilir mimari            | • Özelleştirme zaman alabilir           |
 | • Güçlü dashboard ve raporlama              |                                         |
 
+## 🟦 Splunk ve UEBA  
+
+- UEBA (User and Entity Behavior Analytics), kullanıcıların ve sistem varlıklarının normal davranış kalıplarını öğrenip, bu kalıplardan sapmaları tespit eden bir güvenlik analiz yaklaşımıdır.  
+- Özellikle klasik SIEM kuralları, sabit eşik değerlerine (ör: 5 başarısız giriş denemesi) dayanır. Fakat UEBA:  
+  - Davranış temelli çalışır (ör: kullanıcının her gün sabah 9’da İstanbul’dan bağlanması normal, ama gece 3’te Çin’den bağlanması anormal).  
+  - Makine öğrenmesi ve istatistiksel modellemeyi kullanır.  
+  - Hem kullanıcılar (user) hem de varlıklar (entity) için analiz yapılır (ör: sunucular, IoT cihazları, servis hesapları).  
+- Splunk, klasik SIEM işlevlerinin yanında UEBA (User and Entity Behavior Analytics) modülüyle kullanıcı ve sistem davranışlarını da öğrenir.  
+- Makine öğrenmesi ile desteklenen bu yapı, iç tehditleri ve anomali tespitini daha etkili hale getirir.  
+
+---
+
+## 🎯 Sonuç ve Gelecek Bölüm  
+
+Bu yazıda Splunk’un temel yapısını ve SIEM mimarisini özetledik. Bir sonraki bölümde artık SPL (Search Processing Language) ile Splunk üzerinde temel log analizi nasıl yapılır, nasıl dashboard ve uyarılar tanımlanır, örneklerle öğreneceğiz.  
+
 
